@@ -1,0 +1,121 @@
+@font-face {
+  font-family: "Baruta";
+  src: url('RNS-B.ttf') format('truetype');
+}
+
+body {
+  font-size: 100%;
+  margin:0px;
+}
+
+.banner {
+	height: 30vw;
+	position: relative;
+}
+
+.logo {
+  font-family: "Baruta";
+  font-size: 15vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.bio {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 24px;
+  text-align:center;
+  background-color:#f0f0f0;
+  color:#616161;
+}
+
+.showcase {
+  display:flex;
+  flex-flow: column;
+  gap: 10px;
+  margin: 10px;
+}
+
+.showcase-child {
+    display:flex;
+    flex-flow: wrap row;
+    gap: 10px;
+    margin: auto;
+
+    width: 90vw;
+    max-width: 1400px;
+    padding: 10px;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.showcase-content{
+  width: 450px;
+  height: 300px;
+  margin: auto;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.showcase-logo{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.showcase-desc-txt{
+  font-family: 'Nunito Sans', sans-serif;
+  text-align:center;
+  font-size: 20px;
+  opacity: 1;
+}
+
+.bt{
+  width: 180px;
+  height: 53px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.video{
+  width: 100%;
+  height: 100%;
+}
+
+.itch{
+  font-family: 'Nunito Sans', sans-serif;
+  color:white;
+  text-align:center;
+  font-size: 20px;
+  background-color: #ffa7a6;
+  transition: background-color 0.2s ease-in-out;
+  padding: 10px;
+}
+
+.itch:hover {
+  background-color: #fa5c5c;
+}
+
+.footer {
+  display:flex;
+  flex-flow: row;
+  justify-content:center;
+  gap: 40px;
+  padding: 20px;
+  background-color:#f0f0f0;;
+  height:80px;
+}
+
+.footer-icon {
+  width: 60px;
+  height: 60px;
+  filter: grayscale(1);
+  transition: filter 0.2s ease-in-out;
+}
+
+.footer-icon:hover {
+  filter: grayscale(0);
+}
