@@ -6,6 +6,8 @@
 body {
   font-size: 100%;
   margin:0px;
+  background-image: url('bckg.jpg');
+  background-size: contain;
 }
 
 .banner {
@@ -26,8 +28,7 @@ body {
   font-family: 'Nunito Sans', sans-serif;
   font-size: 24px;
   text-align:center;
-  background-color:#f0f0f0;
-  color:#616161;
+  color: black;
 }
 
 .showcase {
@@ -100,12 +101,15 @@ body {
 }
 
 .footer {
+  background-color:#f0f0f0;
+}
+
+.footer-container{
   display:flex;
   flex-flow: row;
   justify-content:center;
   gap: 40px;
-  padding: 20px;
-  background-color:#f0f0f0;;
+  padding: 20px 20px 0px 20px;
   height:80px;
 }
 
@@ -118,4 +122,20 @@ body {
 
 .footer-icon:hover {
   filter: grayscale(0);
+}
+
+.privacy-policy{
+  font-family: 'Nunito Sans', sans-serif;
+  text-align:center;
+  font-size: 20px;
+  padding: 10px;
+}
+
+.privacy-policy-link{
+  color:grey;
+  transition: color 0.2s ease-in-out;
+}
+
+.privacy-policy-link:hover {
+  color: black;
 }

@@ -1,0 +1,21 @@
+Canvas Privacy Policy - 18/06/2021 (Updated on 30/06/2022)
+
+LOGS -
+
+Wasplay will temporarily store logs when you contribute to the Canvas :
+When adding pixels to the Canvas, your IP address and Oculus ID will be stored on the main server and will be erased after a short amount of time (depending on the activity of the Canvas).
+This allows me to ban players with bad intentions quickly. (IP ban + Oculus account ban)
+
+Nothing else is stored or collected and no account creation is required.
+
+In case you get banned, your IP address and Oculus ID will be stored on the main server until you get unbanned.
+To get unbanned, please contact me on my Discord server or by email at wasplay@sfr.fr.
+
+DISCORD -
+
+The full Canvas is uploaded every 2 minutes to Discord when there is one player or more on the server.
+If you use the "Crop to Discord" feature, your Oculus username will also be shared on Discord.
+
+WEBSITE -
+
+The website has been discontinued about a year ago.
