@@ -1,10 +1,30 @@
 body {
   font-size: 100%;
   margin:0px;
-  background-image: url('bckg.webp');
-  background-repeat:no-repeat;
-  background-size:contain;
-  background-position: center top;
+}
+
+.background-video {
+  position: fixed; /* Reste fixe même lors du défilement */
+  top: 0;
+  left: 0;
+  width: 100vw;    /* 100% de la largeur de la fenêtre */
+  height: 100vh;   /* 100% de la hauteur de la fenêtre */
+  z-index: -1;     /* Place la vidéo DERRIÈRE tout le reste */
+  overflow: hidden;
+}
+
+.background-video video {
+  /* Assure que la vidéo couvre tout l'écran sans être déformée */
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+
+/* Conteneur pour le contenu de la page */
+.content-wrapper {
+  position: relative; /* Nécessaire pour que le contenu s'affiche au-dessus */
+  z-index: 1;         /* Assure que le contenu est DEVANT la vidéo */
+  background-color: transparent; /* Fond transparent pour voir la vidéo */
 }
 
 .banner {
@@ -12,48 +32,87 @@ body {
 	position: relative;
 }
 
+/* Animation de flottement (inchangée) */
+@keyframes subtle-float {
+  0% { transform: translate(2px, 4px) rotate(1deg); }
+  25% { transform: translate(-3px, -2px) rotate(-1.5deg); }
+  50% { transform: translate(3px, -3px) rotate(2deg); }
+  75% { transform: translate(-2px, 3px) rotate(-1deg); }
+  100% { transform: translate(2px, 4px) rotate(1deg); }
+}
+
+
+/* Application de l'animation aux lettres */
+.logo span {
+  display: inline-block;
+  /* On applique l'animation "subtle-float" sur 15 secondes,
+     en boucle infinie, avec une transition douce (ease-in-out) */
+  animation: subtle-float 15s ease-in-out infinite;
+}
+
+/*
+  ASTUCE : On décale le début de l'animation pour chaque lettre
+  en utilisant un "animation-delay" négatif.
+  Cela donne l'impression d'un mouvement aléatoire et désynchronisé.
+*/
+.logo span:nth-child(1) { animation-delay: -1s; } /* W */
+.logo span:nth-child(2) { animation-delay: -4s; } /* a */
+.logo span:nth-child(3) { animation-delay: -10s; } /* s */
+.logo span:nth-child(4) { animation-delay: -6s; } /* p */
+.logo span:nth-child(5) { animation-delay: -14s; } /* l */
+.logo span:nth-child(6) { animation-delay: -8s; } /* a */
+.logo span:nth-child(7) { animation-delay: -2s; } /* y */
+
 .logo {
   font-family: 'RNS Baruta Black', sans-serif;
-  font-size: 15vw;
+  font-size: 18vw;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  white-space: nowrap;
 }
 
 .bio {
   font-family: 'Nunito Sans', sans-serif;
-  font-size: 24px;
+  font-size: clamp(18px, 2.5vw, 24px); /* Taille de police responsive */
   text-align:center;
   color: black;
+  padding: 0 20px; /* Ajout d'un padding horizontal */
 }
 
 .showcase {
   display:flex;
   flex-flow: column;
-  gap: 10px;
-  margin: 10px;
+  gap: 20px; /* Augmentation de l'écart */
+  margin: 20px 10px; /* Augmentation de la marge */
 }
 
 .showcase-child {
     display:flex;
-    flex-flow: wrap row;
-    gap: 10px;
+    flex-flow: row wrap; /* Permet aux éléments de passer à la ligne */
+    justify-content: center; /* Centre les éléments */
+    gap: 20px; /* Augmentation de l'écart */
     margin: auto;
-
-    width: 90vw;
+    width: 95%; /* Largeur relative */
     max-width: 1400px;
-    padding: 10px;
+    padding: 20px;
     background-attachment: fixed;
     background-size: cover;
+    border-radius: 15px; /* Ajout de coins arrondis */
+    box-sizing: border-box; /* Inclut le padding dans la largeur totale */
 }
 
 .showcase-content{
-  width: 450px;
-  height: 300px;
-  margin: auto;
-  padding: 10px;
-  background-color: rgba(255, 255, 255, 0.4);
+  flex: 1 1 400px; /* Permet aux éléments de grandir et rétrécir, avec une base de 400px */
+  min-height: 300px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.4); /* Augmentation de l'opacité pour la lisibilité */
+  border-radius: 10px; /* Ajout de coins arrondis */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 500px; /* Largeur maximale par bloc */
 }
 
 .showcase-logo{
@@ -61,13 +120,14 @@ body {
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+  min-width: 180px; /* Largeur minimale pour le logo */
   height: auto;
 }
 
 .showcase-desc-txt{
   font-family: 'Nunito Sans', sans-serif;
   text-align:center;
-  font-size: 20px;
+  font-size: clamp(18px, 2vw, 20px); /* Taille de police responsive */
   opacity: 1;
 }
 
@@ -75,42 +135,45 @@ body {
   width: 180px;
   height: 53px;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 15px auto 10px auto; /* Ajustement de la marge */
+  transition: transform 0.1s ease-in-out;
 }
 
-.video{
-  width: 100%;
-  height: 100%;
+.bt:hover {
+  transform: scale(1.05); /* Ajoute un zoom de 5% */
 }
 
-.play{
+.video-container {
+    width: 100%;
+    height: 100%;
+    min-height: 300px; /* Hauteur minimale pour la vidéo */
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px; /* Coins arrondis pour le conteneur vidéo */
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.play, .itch {
   font-family: 'Nunito Sans', sans-serif;
   color:white;
   text-align:center;
-  font-size: 20px;
-  background-color: #7adcff;
-  transition: background-color 0.2s ease-in-out;
+  font-size: clamp(18px, 2.2vw, 22px); /* Taille de police responsive */
+  transition: background-color 0.1s ease-in-out, transform 0.1s ease-in-out;
   padding: 10px;
 }
 
-.play:hover {
-  background-color: #3bccff;
-}
+.play { background-color: #7adcff; }
+.play:hover { background-color: #3bccff; transform: scale(1.05); }
 
-.itch{
-  font-family: 'Nunito Sans', sans-serif;
-  color:white;
-  text-align:center;
-  font-size: 20px;
-  background-color: #ffa7a6;
-  transition: background-color 0.2s ease-in-out;
-  padding: 10px;
-}
-
-.itch:hover {
-  background-color: #fa5c5c;
-}
+.itch { background-color: #ffa7a6; }
+.itch:hover { background-color: #fa5c5c; transform: scale(1.05); }
 
 .footer {
   background-color:#f0f0f0;
@@ -118,34 +181,34 @@ body {
 
 .footer-container{
   display:flex;
-  flex-flow: row;
+  flex-flow: row wrap; /* Permet aux icônes de passer à la ligne */
   justify-content:center;
-  gap: 40px;
+  gap: 30px; /* Réduction de l'écart pour les petits écrans */
   padding: 20px 20px 0px 20px;
-  height:80px;
 }
 
 .footer-icon {
   width: 60px;
   height: 60px;
   filter: grayscale(1);
-  transition: filter 0.2s ease-in-out;
+  transition: filter 0.1s ease-in-out, transform 0.1s ease-in-out;
 }
 
 .footer-icon:hover {
   filter: grayscale(0);
+  transform: scale(1.05);
 }
 
 .privacy-policy{
   font-family: 'Nunito Sans', sans-serif;
   text-align:center;
-  font-size: 20px;
-  padding: 10px;
+  font-size: 18px; /* Taille de police légèrement réduite */
+  padding: 10px; /* Ajustement du padding */
 }
 
 .privacy-policy-link{
   color:grey;
-  transition: color 0.2s ease-in-out;
+  transition: color 0.1s ease-in-out;
 }
 
 .privacy-policy-link:hover {
